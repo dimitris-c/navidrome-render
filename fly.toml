@@ -1,22 +1,30 @@
 app = "navidrome-render"
 
+# Use the official image (you can delete this [build] if you have a Dockerfile)
 [build]
   image = "deluan/navidrome:latest"
 
 [env]
-  ND_LOGLEVEL = "info"
+  ND_DATAFOLDER   = "/data"
+  ND_MUSICFOLDER  = "/data/music"
+  ND_LOGLEVEL     = "info"
   ND_SCANSCHEDULE = "1h"
-  ND_MUSICFOLDER = "/music"
-  ND_DATAFOLDER  = "/data"
 
+# ONE volume only: mount your persistent volume at /data
 [[mounts]]
-  source = "app_data"
+  source = "app_data"      # <-- change to your real volume name if different
   destination = "/data"
 
 [http_service]
   internal_port = 4533
   force_https = true
-  auto_stop_machines = false
   auto_start_machines = true
+  auto_stop_machines = false
   min_machines_running = 1
   processes = ["app"]
+
+  [[http_service.checks]]
+    interval = "10s"
+    timeout  = "2s"
+    method   = "GET"
+    path     = "/"
