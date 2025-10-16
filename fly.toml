@@ -10,10 +10,6 @@ app = "navidrome-render"
   ND_DATAFOLDER  = "/data"
 
 [[mounts]]
-  source = "music_data"
-  destination = "/music"
-
-[[mounts]]
   source = "app_data"
   destination = "/data"
 
