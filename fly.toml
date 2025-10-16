@@ -1,0 +1,26 @@
+app = "navidrome-render"
+
+[build]
+  image = "deluan/navidrome:latest"
+
+[env]
+  ND_LOGLEVEL = "info"
+  ND_SCANSCHEDULE = "1h"
+  ND_MUSICFOLDER = "/music"
+  ND_DATAFOLDER  = "/data"
+
+[[mounts]]
+  source = "music_data"
+  destination = "/music"
+
+[[mounts]]
+  source = "app_data"
+  destination = "/data"
+
+[http_service]
+  internal_port = 4533
+  force_https = true
+  auto_stop_machines = false
+  auto_start_machines = true
+  min_machines_running = 1
+  processes = ["app"]
