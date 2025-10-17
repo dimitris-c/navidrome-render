@@ -1,5 +1,5 @@
-app = "my-navidrome"
-primary_region = "lhr"
+app = "navidrome-server"
+primary_region = "fra"
 
 [build]
   image = "deluan/navidrome:latest"
