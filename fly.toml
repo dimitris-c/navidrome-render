@@ -8,19 +8,8 @@ primary_region = "fra"
   source = "data"
   destination = "/data"
 
-[[services]]
+[http_service]
   internal_port = 4533
-  protocol = "tcp"
-
-  [[services.ports]]
-    port = 80
-    handlers = ["http"]
-
-  [[services.ports]]
-    port = 443
-    handlers = ["tls", "http"]
-
-  [services.concurrency]
-    type = "connections"
-    soft_limit = 25
-    hard_limit = 50
+  force_https = true
+  auto_stop_machines = true
+  auto_start_machines = true
